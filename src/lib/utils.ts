@@ -78,7 +78,7 @@ export const openWindow = (url: string) => {
       //return navigate({to: `/checkout/${window.location.pathname.split('/')[3]}/facturation`});
     }
     
-    navigate({to: "/customer/dashboard"});
+    navigateTo("customer/dashboard");
   };
 
   // Listen for message from popup
