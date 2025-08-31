@@ -283,3 +283,121 @@ body {
       rotate(calc(var(--rotate-deg) + 4deg));
   }
 }
+
+/*
+Custom CSS   
+*/
+#website-footer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--background-height) * -1);
+  left: 0;
+  height: var(--background-height);
+  width: 100%;
+  background: radial-gradient(
+      60% 50% at 50% 120%,
+      rgb(17, 11, 30) 0,
+      rgb(17, 11, 30) 99%,
+      rgba(17, 11, 30, 0) 100%
+    ),
+    radial-gradient(
+      55% 50% at 50% 110%,
+      rgb(121, 45, 212) 0,
+      rgb(121, 45, 212) 55%,
+      rgba(121, 45, 212, 0) 96%
+    ),
+    radial-gradient(
+      60% 60% at 50% 100%,
+      rgb(48, 7, 77) 0,
+      rgba(48, 7, 77, 0.6) 55%,
+      rgba(48, 7, 77, 0) 100%
+    ),
+    radial-gradient(
+      70% 80% at 50% 100%,
+      rgb(38, 19, 60) 0,
+      rgba(38, 19, 60, 0.8) 40%,
+      rgba(38, 19, 60, 0) 100%
+    );
+  background-size: cover;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(
+    90deg,
+    oklch(51.53% 0.267 285.61),
+    oklch(58.63% 0.207 261.04)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-btn-primary {
+  background: linear-gradient(
+    90deg,
+    oklch(58.63% 0.207 261.04),
+    oklch(51.53% 0.267 285.61)
+  );
+  border-radius: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background: oklch(51.53% 0.267 285.61);
+    box-shadow: 2px 2px 15px 0px oklch(23.2% 0.08 259.74);
+  }
+}
+
+.gradient-btn-secondary {
+  background: linear-gradient(
+    90deg,
+    oklch(94.32% 0.027 260.32),
+    oklch(89.75% 0 0)
+  );
+  border-radius: 15px;
+  color: oklch(36% 0 0);
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 15px;
+    background: oklch(36% 0 0);
+    color: oklch(94.32% 0.027 260.32);
+    box-shadow: 2px 2px 15px 0px oklch(23.2% 0.08 259.74);
+  }
+}
+
+input {
+  color: #000000;
+  font-family: Roboto;
+  background: #fff;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 117.217%;
+  &::placeholder {
+    color: #7d7d7d;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 117.217%;
+  }
+}
+
+/* .boxShadow {
+  box-shadow: 4px 4px 15px 0px rgba(227, 227, 227, 0.25);
+} */
+
+/* Style for Input phone number start */
+.react-tel-input .selected-flag,
+.react-tel-input .selected-flag:hover,
+.react-tel-input .flag-dropdown.open .selected-flag {
+  border-radius: 15px !important;
+}
+
+.react-tel-input .country-list {
+  /* width: 400px !important; */
+  max-height: 300px !important;
+  padding-right: 6px !important;
+  overflow-x: hidden;
+}

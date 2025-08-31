@@ -8,6 +8,7 @@ import  { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
 import GoogleDotsLoader from '../-components/google-loader';
 import { Trans } from "@lingui/react/macro";
+import { Image } from '@unpic/react';
 
 export const Route = createFileRoute('/$lang/_auth/(pages)/sign-in')({
   component: SignInPage,
@@ -47,13 +48,12 @@ function SignInPage() {
         {/* Character fixed at the absolute bottom of the page */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
           <div className="relative w-[450px] h-[450px]">
-            <img
+            <Image
               src="/login.svg"
               alt="3D Character"
               width={1000}
               height={1000}
               className="select-none pointer-events-none absolute bottom-0 left-1/2 transform -translate-x-1/2"
-              
             />
 
             {/* Floating Labels in corners */}

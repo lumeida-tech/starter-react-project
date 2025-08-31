@@ -1,299 +1,148 @@
-Welcome to your new TanStack app! 
+# Wayhost Panel
 
-# Getting Started
+Panel d'administration pour Wayhost, construit avec React 19 et la stack moderne JavaScript/TypeScript.
 
-To run this application:
+## 🚀 Stack Technique
 
+### Frontend
+- **Framework**: React 19
+- **Langage**: TypeScript
+- **Routing**: TanStack Router
+- **Styling**: TailwindCSS avec animations
+- **Gestion d'état**: Jotai
+- **Requêtes API**: TanStack Query avec Ky
+- **Formulaires**: React Hook Form avec validation Zod
+- **UI**: Composants personnalisés avec Radix UI
+- **Internationalisation**: LinguiJS
+- **Notifications**: Sonner
+- **Animations**: Framer Motion
+- **Images**: @unpic/react pour l'optimisation avancée des images
+
+### Optimisation des images avec @unpic/react
+
+Le projet utilise `@unpic/react` pour une optimisation avancée des images. Ce composant permet de :
+- Charger des images adaptées à chaque appareil (responsive)
+- Optimiser automatiquement le format et la qualité
+- Supporter le lazy loading natif
+- Maintenir un bon score Core Web Vitals
+
+#### Utilisation de base :
+
+```tsx
+import { Image } from '@unpic/react';
+
+// Image responsive avec optimisation automatique
+<Image
+  src="/image.jpg"
+  layout="constrained"
+  width={800}
+  height={600}
+  alt="Description de l'image"
+  className="rounded-lg"
+/>
+
+
+### Outils de Développement
+- **Bundler**: Vite
+- **Tests**: Vitest + Testing Library
+- **Linting**: ESLint
+- **Formatage**: Prettier
+- **Conteneurisation**: Docker
+
+## 🛠 Installation
+
+### Prérequis
+- Node.js 20+
+- pnpm 9+
+- Docker (optionnel pour le déploiement)
+
+### Configuration
+1. Cloner le dépôt
+2. Installer les dépendances :
+   ```bash
+   pnpm install
+   ```
+3. Créer un fichier `.env` à la racine avec les variables d'environnement nécessaires :
+   ```
+   VITE_API_URL=http://localhost:3000
+   VITE_APP_TITLE=Wayhost Panel
+   ```
+
+## 🚀 Démarrage
+
+### Développement
 ```bash
-pnpm install
-pnpm start  
+pnpm dev
+```
+Le serveur de développement sera disponible sur http://localhost:5173
+
+### Production
+#### Avec Docker
+```bash
+docker build -t wayhost-panel .
+docker run -p 3000:80 wayhost-panel
 ```
 
-# Building For Production
-
-To build this application for production:
-
+#### Sans Docker
 ```bash
 pnpm build
+pnpm serve
 ```
 
-## Testing
+## 🔧 Commandes utiles
+- `pnpm dev` - Lancer le serveur de développement
+- `pnpm build` - Construire pour la production
+- `pnpm test` - Lancer les tests
+- `pnpm extract` - Extraire les messages pour l'i18n
+- `pnpm compile` - Compiler les fichiers de traduction
 
-This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+## 📁 Structure du projet
 
-```bash
-pnpm test
+Le projet suit une architecture par fonctionnalités organisée dans le dossier `src/modules/` :
+
+```
+src/
+├── modules/                    # Fonctionnalités de l'application
+│   └── $lang/                 # Support multilingue
+│       ├── _auth/             # Module d'authentification
+│       │   ├── (pages)/       # Pages liées à l'authentification
+│       │   ├── -components/   # Composants spécifiques à l'authentification
+│       │   ├── hooks/         # Hooks personnalisés
+│       │   ├── requests/      # Appels API
+│       │   ├── schemas/       # Schémas de validation
+│       │   ├── stores/        # Gestion d'état local
+│       │   └── tests/         # Tests unitaires
+│       │
+│       └── _panel/            # Panneau d'administration
+│           ├── (pages)/       # Routes et pages
+│           │   ├── admin/     # Interface administrateur
+│           │   │   ├── os/    # Gestion des OS
+│           │   │   └── servers/ # Gestion des serveurs
+│           │   └── customer/  # Interface client
+│           │       ├── profile/ # Profil utilisateur
+│           │       └── servers/ # Serveurs du client
+│           ├── -components/   # Composants spécifiques au panel
+│           ├── hooks/         # Hooks personnalisés
+│           └── requests/      # Appels API
+│
+├── shared/                    # Code partagé entre les fonctionnalités
+│   ├── components/           # Composants réutilisables
+│   │   ├── magicui/         # Composants UI magiques
+│   │   └── ui/              # Composants UI de base
+│   └── providers/           # Fournisseurs de contexte globaux
+│
+├── locales/                  # Fichiers de traduction
+│   ├── en/                  # Textes en anglais
+│   └── fr/                  # Textes en français
+│
+├── lib/                     # Utilitaires et configurations
+└── App.tsx                  # Point d'entrée de l'application
 ```
 
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-
-
-## Shadcn
-
-Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
-
-```bash
-pnpx shadcn@latest add button
-```
-
-
-
-## Routing
-This project uses [TanStack Router](https://tanstack.com/router). The initial setup is a file based router. Which means that the routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add another a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you use the `<Outlet />` component.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import { Link } from "@tanstack/react-router";
-
-export const Route = createRootRoute({
-  component: () => (
-    <>
-      <header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </nav>
-      </header>
-      <Outlet />
-      <TanStackRouterDevtools />
-    </>
-  ),
-})
-```
-
-The `<TanStackRouterDevtools />` component is not required so you can remove it if you don't want it in your layout.
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-const peopleRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/people",
-  loader: async () => {
-    const response = await fetch("https://swapi.dev/api/people");
-    return response.json() as Promise<{
-      results: {
-        name: string;
-      }[];
-    }>;
-  },
-  component: () => {
-    const data = peopleRoute.useLoaderData();
-    return (
-      <ul>
-        {data.results.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    );
-  },
-});
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-### React-Query
-
-React-Query is an excellent addition or alternative to route loading and integrating it into you application is a breeze.
-
-First add your dependencies:
-
-```bash
-pnpm add @tanstack/react-query @tanstack/react-query-devtools
-```
-
-Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
-
-```tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-// ...
-
-const queryClient = new QueryClient();
-
-// ...
-
-if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-
-  root.render(
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
-}
-```
-
-You can also add TanStack Query Devtools to the root route (optional).
-
-```tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-const rootRoute = createRootRoute({
-  component: () => (
-    <>
-      <Outlet />
-      <ReactQueryDevtools buttonPosition="top-right" />
-      <TanStackRouterDevtools />
-    </>
-  ),
-});
-```
-
-Now you can use `useQuery` to fetch your data.
-
-```tsx
-import { useQuery } from "@tanstack/react-query";
-
-import "./App.css";
-
-function App() {
-  const { data } = useQuery({
-    queryKey: ["people"],
-    queryFn: () =>
-      fetch("https://swapi.dev/api/people")
-        .then((res) => res.json())
-        .then((data) => data.results as { name: string }[]),
-    initialData: [],
-  });
-
-  return (
-    <div>
-      <ul>
-        {data.map((person) => (
-          <li key={person.name}>{person.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export default App;
-```
-
-You can find out everything you need to know on how to use React-Query in the [React-Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview).
-
-## State Management
-
-Another common requirement for React applications is state management. There are many options for state management in React. TanStack Store provides a great starting point for your project.
-
-First you need to add TanStack Store as a dependency:
-
-```bash
-pnpm add @tanstack/store
-```
-
-Now let's create a simple counter in the `src/App.tsx` file as a demonstration.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-function App() {
-  const count = useStore(countStore);
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-    </div>
-  );
-}
-
-export default App;
-```
-
-One of the many nice features of TanStack Store is the ability to derive state from other state. That derived state will update when the base state updates.
-
-Let's check this out by doubling the count using derived state.
-
-```tsx
-import { useStore } from "@tanstack/react-store";
-import { Store, Derived } from "@tanstack/store";
-import "./App.css";
-
-const countStore = new Store(0);
-
-const doubledStore = new Derived({
-  fn: () => countStore.state * 2,
-  deps: [countStore],
-});
-doubledStore.mount();
-
-function App() {
-  const count = useStore(countStore);
-  const doubledCount = useStore(doubledStore);
-
-  return (
-    <div>
-      <button onClick={() => countStore.setState((n) => n + 1)}>
-        Increment - {count}
-      </button>
-      <div>Doubled - {doubledCount}</div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-We use the `Derived` class to create a new store that is derived from another store. The `Derived` class has a `mount` method that will start the derived store updating.
-
-Once we've created the derived store we can use it in the `App` component just like we would any other store using the `useStore` hook.
-
-You can find out everything you need to know on how to use TanStack Store in the [TanStack Store documentation](https://tanstack.com/store/latest).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+### Organisation par fonctionnalité
+Chaque fonctionnalité est auto-contenue dans son propre dossier avec :
+- Ses propres composants
+- Sa logique métier
+- Ses appels API
+- Ses tests
+- Sa documentation
