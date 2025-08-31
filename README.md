@@ -40,7 +40,22 @@ import { Image } from '@unpic/react';
   alt="Description de l'image"
   className="rounded-lg"
 />
+```
 
+Pour les images provenant de sources externes, spécifiez le domaine dans la configuration Vite :
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  plugins: [
+    // ...autres plugins
+    UnpicVite({
+      // Liste des domaines autorisés pour l'optimisation
+      allowedDomains: ['images.unsplash.com', 'votre-domaine.com']
+    })
+  ]
+})
+```
 
 ### Outils de Développement
 - **Bundler**: Vite
