@@ -9,9 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './modules/__root'
+import { Route as NetworkErrorRouteImport } from './modules/network-error'
 import { Route as LangRouteRouteImport } from './modules/$lang/route'
 import { Route as IndexRouteImport } from './modules/index'
-import { Route as LangIndexRouteImport } from './modules/$lang/index'
 import { Route as LangPanelRouteRouteImport } from './modules/$lang/_panel/route'
 import { Route as LangAuthRouteRouteImport } from './modules/$lang/_auth/route'
 import { Route as LangAuthpagesSignUpRouteImport } from './modules/$lang/_auth/(pages)/sign-up'
@@ -30,6 +30,11 @@ import { Route as LangPanelpagesAdminOsCreateRouteImport } from './modules/$lang
 import { Route as LangPanelpagesCustomerServersServerIdBackupRouteImport } from './modules/$lang/_panel/(pages)/customer/servers/$serverId/backup'
 import { Route as LangPanelpagesAdminOsOsIdUpdateRouteImport } from './modules/$lang/_panel/(pages)/admin/os/$osId/update'
 
+const NetworkErrorRoute = NetworkErrorRouteImport.update({
+  id: '/network-error',
+  path: '/network-error',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LangRouteRoute = LangRouteRouteImport.update({
   id: '/$lang',
   path: '/$lang',
@@ -39,11 +44,6 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any)
-const LangIndexRoute = LangIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LangRouteRoute,
 } as any)
 const LangPanelRouteRoute = LangPanelRouteRouteImport.update({
   id: '/_panel',
@@ -144,7 +144,7 @@ const LangPanelpagesAdminOsOsIdUpdateRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangPanelRouteRouteWithChildren
-  '/$lang/': typeof LangIndexRoute
+  '/network-error': typeof NetworkErrorRoute
   '/$lang/forget-password': typeof LangAuthpagesForgetPasswordRoute
   '/$lang/oauth': typeof LangAuthpagesOauthRoute
   '/$lang/reset-password': typeof LangAuthpagesResetPasswordRoute
@@ -163,7 +163,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/$lang': typeof LangIndexRoute
+  '/$lang': typeof LangPanelRouteRouteWithChildren
+  '/network-error': typeof NetworkErrorRoute
   '/$lang/forget-password': typeof LangAuthpagesForgetPasswordRoute
   '/$lang/oauth': typeof LangAuthpagesOauthRoute
   '/$lang/reset-password': typeof LangAuthpagesResetPasswordRoute
@@ -184,9 +185,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteRouteWithChildren
+  '/network-error': typeof NetworkErrorRoute
   '/$lang/_auth': typeof LangAuthRouteRouteWithChildren
   '/$lang/_panel': typeof LangPanelRouteRouteWithChildren
-  '/$lang/': typeof LangIndexRoute
   '/$lang/_auth/(pages)/forget-password': typeof LangAuthpagesForgetPasswordRoute
   '/$lang/_auth/(pages)/oauth': typeof LangAuthpagesOauthRoute
   '/$lang/_auth/(pages)/reset-password': typeof LangAuthpagesResetPasswordRoute
@@ -208,7 +209,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$lang'
-    | '/$lang/'
+    | '/network-error'
     | '/$lang/forget-password'
     | '/$lang/oauth'
     | '/$lang/reset-password'
@@ -228,6 +229,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/$lang'
+    | '/network-error'
     | '/$lang/forget-password'
     | '/$lang/oauth'
     | '/$lang/reset-password'
@@ -247,9 +249,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$lang'
+    | '/network-error'
     | '/$lang/_auth'
     | '/$lang/_panel'
-    | '/$lang/'
     | '/$lang/_auth/(pages)/forget-password'
     | '/$lang/_auth/(pages)/oauth'
     | '/$lang/_auth/(pages)/reset-password'
@@ -270,10 +272,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangRouteRoute: typeof LangRouteRouteWithChildren
+  NetworkErrorRoute: typeof NetworkErrorRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/network-error': {
+      id: '/network-error'
+      path: '/network-error'
+      fullPath: '/network-error'
+      preLoaderRoute: typeof NetworkErrorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$lang': {
       id: '/$lang'
       path: '/$lang'
@@ -287,13 +297,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/$lang/': {
-      id: '/$lang/'
-      path: '/'
-      fullPath: '/$lang/'
-      preLoaderRoute: typeof LangIndexRouteImport
-      parentRoute: typeof LangRouteRoute
     }
     '/$lang/_panel': {
       id: '/$lang/_panel'
@@ -476,13 +479,11 @@ const LangPanelRouteRouteWithChildren = LangPanelRouteRoute._addFileChildren(
 interface LangRouteRouteChildren {
   LangAuthRouteRoute: typeof LangAuthRouteRouteWithChildren
   LangPanelRouteRoute: typeof LangPanelRouteRouteWithChildren
-  LangIndexRoute: typeof LangIndexRoute
 }
 
 const LangRouteRouteChildren: LangRouteRouteChildren = {
   LangAuthRouteRoute: LangAuthRouteRouteWithChildren,
   LangPanelRouteRoute: LangPanelRouteRouteWithChildren,
-  LangIndexRoute: LangIndexRoute,
 }
 
 const LangRouteRouteWithChildren = LangRouteRoute._addFileChildren(
@@ -492,6 +493,7 @@ const LangRouteRouteWithChildren = LangRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRouteRoute: LangRouteRouteWithChildren,
+  NetworkErrorRoute: NetworkErrorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

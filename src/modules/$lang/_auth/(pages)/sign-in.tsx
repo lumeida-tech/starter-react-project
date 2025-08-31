@@ -7,6 +7,7 @@ import { Input } from '@/shared/components/ui/input';
 import  { Button } from '@/shared/components/ui/button';
 import { Separator } from '@/shared/components/ui/separator';
 import GoogleDotsLoader from '../-components/google-loader';
+import { Trans } from "@lingui/react/macro";
 
 export const Route = createFileRoute('/$lang/_auth/(pages)/sign-in')({
   component: SignInPage,
@@ -100,17 +101,17 @@ function SignInPage() {
             href="/"
             className="inline-flex items-center text-white/80 hover:text-white mb-4 sm:mb-6" to={'/'}        >
           <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-          Retour
+          <Trans>Retour</Trans>
         </Link>
 
         {/* Titre */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center flex flex-col items-center justify-center text-white mb-4 sm:mb-6 md:mb-8">
-          Content de vous revoir !
+          <Trans>Content de vous revoir !</Trans>
         </h1>
 
         {/* Formulaire de connexion */}
         <form
-          autoComplete="off"
+          autoComplete="off"  
           ref={ref.formRef}
           onSubmit={handlers.handleFormSubmit}
           className="space-y-4 sm:space-y-6"
@@ -156,9 +157,11 @@ function SignInPage() {
           {/* Lien mot de passe oublié */}
           <div className="text-right">
             <Link
-                href="/forgot-password"
-                className="text-[16px] cursor-pointer sm:text-md font-bold text-white/95 hover:text-white" to={'/'}            >
-              Mot de passe oublié ?
+                to="/$lang/forget-password"
+                params={{ lang: 'fr' }}
+                preload={false}
+                className="text-[16px] cursor-pointer sm:text-md font-bold text-white/95 hover:text-white"         >
+              <Trans>Mot de passe oublié ?</Trans>
             </Link>
           </div>
 
@@ -169,8 +172,8 @@ function SignInPage() {
             disabled={mutations.loginMutation.isPending}
           >
             {mutations.loginMutation.isPending
-              ? "Connexion en cours..."
-              : "Se connecter"}
+              ? <Trans>Connexion en cours...</Trans>
+              : <Trans>Se connecter</Trans>}
           </Button>
         </form>
 
@@ -181,7 +184,7 @@ function SignInPage() {
               <Separator className="bg-white/20" />
             </div>
             <span className="px-3 text-white text-xs sm:text-sm whitespace-nowrap">
-              ou se connecter avec
+              <Trans>ou se connecter avec</Trans>
             </span>
             <div className="flex-1">
               <Separator className="bg-white/20" />
@@ -234,11 +237,13 @@ function SignInPage() {
         </div>
 
         <p className="mt-6 sm:mt-7 md:mt-8 text-center text-white/80 text-[16px] sm:text-sm">
-          Pas encore de compte ?{" "}
+          <Trans>Pas encore de compte ?</Trans>{" "}
           <Link
-              href="/sign-up"
-              className="text-white font-bold hover:underline" to={'/'}          >
-            Créer un compte
+              to="/$lang/sign-up"
+              params={{ lang: 'fr' }}
+              preload={false}
+              className="text-white font-bold hover:underline"           >
+            <Trans>Créer un compte</Trans>
           </Link>
         </p>
       </div>

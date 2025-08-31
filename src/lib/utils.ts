@@ -16,7 +16,7 @@ export function copyContent(content: any) {
 export interface CustomHookProps {
   state: any,
   handlers: any,
-  mutations: any ,
+  mutations: any,
   ref: any,
   form: any
 }
@@ -67,18 +67,18 @@ export const openWindow = (url: string) => {
 
   const messageHandler = (event: MessageEvent) => {
     if (event.origin !== allowedOrigin) return;
-    
+
     window.removeEventListener("message", messageHandler); // clean up
-    
-    if(window.location.pathname.split('/')[3] === 'account') {
+
+    if (window.location.pathname.split('/')[3] === 'account') {
       //return navigate({to: `/cart/facturation`});
     }
 
-    if(window.location.pathname.split('/')[4] === 'account') {
+    if (window.location.pathname.split('/')[4] === 'account') {
       //return navigate({to: `/checkout/${window.location.pathname.split('/')[3]}/facturation`});
     }
-    
-    navigateTo("customer/dashboard");
+
+    navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
   };
 
   // Listen for message from popup
@@ -170,9 +170,24 @@ export async function getCroppedImg(
 }
 
 export async function authMiddleware(gard: 'auth' | 'panel') {
-  const response =  await fetch('/api/auth/info', {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+  const response = await fetch('/api/auth/info', {
     credentials: 'include',
-  }).catch(() => null) 
+    signal: controller.signal,
+  }).catch(() => {
+    console.log('Timeout or network error');
+    throw redirect({
+      to: '/network-error',
+      search: {
+        errorType: 'network',
+        canRetry: 'true',
+        returnTo: '/$lang/sign-in',
+      },
+    })
+  })
+
+  clearTimeout(timeoutId);
 
   switch (gard) {
     case 'auth':
@@ -194,10 +209,4 @@ export async function authMiddleware(gard: 'auth' | 'panel') {
     default:
       break;
   }
-}
-
-export function navigateTo(path: string, params?: any) {
-  const lang = localStorage.getItem('preferred-lang') || 'fr';
-  const navigate = useNavigate();
-  return navigate({ to: `/$lang/${path}`, params: { lang, ...params } });
 }

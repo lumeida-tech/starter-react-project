@@ -29,7 +29,6 @@ import type {
   ConfigureTwoFactorAuthMutationVariables,
   TwoFactorMutationPayload,
 } from "../schemas";
-import { navigateTo } from "@/lib/utils";
 
 /**
  * Hook pour la connexion avec deux facteurs
@@ -94,7 +93,7 @@ export function useTwoFactorAuthMutation() {
     setAuthenticated(true);
     setShow2FA(false);
 
-    navigateTo("customer/dashboard");
+    navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
     toast.success("Connexion réussie !");
   };
 
@@ -292,7 +291,7 @@ export function useWhatsAppAuthMutation() {
       });
 
       setAuthenticated(true);
-      navigateTo("customer/dashboard");
+      navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
       toast.success("Connexion réussie !");
       setShow2FA(false);
     },

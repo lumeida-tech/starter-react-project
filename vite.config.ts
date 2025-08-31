@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { lingui } from "@lingui/vite-plugin";
 
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import { resolve } from 'node:path'
@@ -52,8 +53,15 @@ export default defineConfig(({ mode }) => {
       quoteStyle: "single",
       routeFileIgnorePattern: "\.ts$",
     }),
-    viteReact(),
+    viteReact(
+      {
+        babel: {
+          plugins: ["@lingui/babel-plugin-lingui-macro"],
+        },
+      }
+    ),
     tailwindcss(),
+    lingui(),
   ],
   server: {
     port: 5173,

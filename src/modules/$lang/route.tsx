@@ -1,6 +1,6 @@
 import { createFileRoute, redirect, Outlet } from '@tanstack/react-router'
 
-const SUPPORTED_LANGUAGES = ['fr', 'en', 'es']
+const SUPPORTED_LANGUAGES = ['fr', 'en']
 
 interface LangContext {
   lang: string
@@ -10,20 +10,13 @@ export const Route = createFileRoute('/$lang')({
   component: LangLayout,
   beforeLoad: ({ params  }): LangContext => {
     const { lang } = params
-    
-    // Si la langue n'est pas supportée, rediriger vers français
-    if (!SUPPORTED_LANGUAGES.includes(lang)) {
+    const isSupportedLang = SUPPORTED_LANGUAGES.includes(lang)
+    if (!isSupportedLang || window.location.pathname === '/fr' || window.location.pathname === '/en') {
       throw redirect({
         to: '/$lang/sign-in',
-        params: { lang: 'fr' },
+        params: { lang: isSupportedLang ? lang : 'fr' },
       })
     }
-    
-    // Si la langue est supportée, rediriger vers sign-in avec cette langue
-    // throw redirect({
-    //   to: '/$lang/sign-in',
-    //   params: { lang },
-    // })
     return { lang }
     },
 })

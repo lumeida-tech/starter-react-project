@@ -5,6 +5,7 @@ export const Route = createFileRoute('/$lang/_auth')({
   beforeLoad: async ({  }) => {
    await authMiddleware('auth');
   },
+
   component: AuthLayout,
 })
 

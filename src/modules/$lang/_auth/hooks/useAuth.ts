@@ -31,8 +31,9 @@ import {
   isForgotPasswordFormSubmittedAtom,
 } from "../stores/auth-atoms";
 import type { CustomHttpError } from "@/lib/http-client";
-import { Route, useNavigate } from "@tanstack/react-router";
-import { navigateTo, openWindow } from "@/lib/utils";
+import { useNavigate } from "@tanstack/react-router";
+import { openWindow } from "@/lib/utils";
+import { langAtom } from "@/shared/atoms";
 
 /**
  * Hook pour l'inscription utilisateur
@@ -70,6 +71,8 @@ export function useLoginMutation() {
   const setUser = useSetAtom(userAtom);
   const setAuthenticated = useSetAtom(isAuthenticatedAtom);
   const setTwoFactorAuth = useSetAtom(twoFactorAuthAtom);
+  const navigate = useNavigate();
+  const lang = useAtomValue(langAtom);
 
   return useMutation({
     mutationFn: async (data: any) => {
@@ -118,8 +121,7 @@ export function useLoginMutation() {
         if (window.location.pathname.split("/")[4] === "account") {
           // return navigate({to: `/checkout/${window.location.pathname.split("/")[3]}/facturation`});
         }
-
-        navigateTo("customer/dashboard");
+        navigate({to: `/$lang/customer/dashboard`, params: { lang }});
       }
     },
     onError: (error: CustomHttpError) => {
@@ -260,13 +262,14 @@ export function useAxmarilLoginMutation() {
  * avec notifications de succès/erreur
  */
 export function useLogoutMutation() {
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async () => {
       return await logoutRequest();
     },
     onSuccess: () => {
       toast.success("Déconnexion réussie");
-      navigateTo("sign-in");
+      navigate({to: `/$lang/sign-in`, params: { lang: 'fr' }});
     },
     onError: (error: Error) => {
       toast.error(error.message);
