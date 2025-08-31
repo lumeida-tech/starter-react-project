@@ -29,6 +29,7 @@ import type {
   ConfigureTwoFactorAuthMutationVariables,
   TwoFactorMutationPayload,
 } from "../schemas";
+import { getCurrentLang } from "@/shared/atoms";
 
 /**
  * Hook pour la connexion avec deux facteurs
@@ -93,7 +94,7 @@ export function useTwoFactorAuthMutation() {
     setAuthenticated(true);
     setShow2FA(false);
 
-    navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
+    navigate({to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() }});
     toast.success("Connexion réussie !");
   };
 
@@ -291,7 +292,7 @@ export function useWhatsAppAuthMutation() {
       });
 
       setAuthenticated(true);
-      navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
+      navigate({to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() }});
       toast.success("Connexion réussie !");
       setShow2FA(false);
     },

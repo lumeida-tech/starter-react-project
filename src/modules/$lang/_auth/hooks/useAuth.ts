@@ -33,7 +33,7 @@ import {
 import type { CustomHttpError } from "@/lib/http-client";
 import { useNavigate } from "@tanstack/react-router";
 import { openWindow } from "@/lib/utils";
-import { langAtom } from "@/shared/atoms";
+import { getCurrentLang, langAtom } from "@/shared/atoms";
 
 /**
  * Hook pour l'inscription utilisateur
@@ -72,7 +72,6 @@ export function useLoginMutation() {
   const setAuthenticated = useSetAtom(isAuthenticatedAtom);
   const setTwoFactorAuth = useSetAtom(twoFactorAuthAtom);
   const navigate = useNavigate();
-  const lang = useAtomValue(langAtom);
 
   return useMutation({
     mutationFn: async (data: any) => {
@@ -121,7 +120,7 @@ export function useLoginMutation() {
         if (window.location.pathname.split("/")[4] === "account") {
           // return navigate({to: `/checkout/${window.location.pathname.split("/")[3]}/facturation`});
         }
-        navigate({to: `/$lang/customer/dashboard`, params: { lang }});
+        navigate({to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() }});
       }
     },
     onError: (error: CustomHttpError) => {
@@ -269,7 +268,7 @@ export function useLogoutMutation() {
     },
     onSuccess: () => {
       toast.success("Déconnexion réussie");
-      navigate({to: `/$lang/sign-in`, params: { lang: 'fr' }});
+      navigate({to: `/$lang/sign-in`, params: { lang: getCurrentLang() }});
     },
     onError: (error: Error) => {
       toast.error(error.message);

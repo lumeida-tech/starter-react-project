@@ -9,6 +9,7 @@ import { Separator } from '@/shared/components/ui/separator';
 import GoogleDotsLoader from '../-components/google-loader';
 import { Trans } from "@lingui/react/macro";
 import { Image } from '@unpic/react';
+import { getCurrentLang } from '@/shared/atoms';
 
 export const Route = createFileRoute('/$lang/_auth/(pages)/sign-in')({
   component: SignInPage,
@@ -158,7 +159,7 @@ function SignInPage() {
           <div className="text-right">
             <Link
                 to="/$lang/forget-password"
-                params={{ lang: 'fr' }}
+                params={{ lang: getCurrentLang() }}
                 preload={false}
                 className="text-[16px] cursor-pointer sm:text-md font-bold text-white/95 hover:text-white"         >
               <Trans>Mot de passe oublié ?</Trans>
@@ -240,7 +241,7 @@ function SignInPage() {
           <Trans>Pas encore de compte ?</Trans>{" "}
           <Link
               to="/$lang/sign-up"
-              params={{ lang: 'fr' }}
+              params={{ lang: getCurrentLang() }}
               preload={false}
               className="text-white font-bold hover:underline"           >
             <Trans>Créer un compte</Trans>

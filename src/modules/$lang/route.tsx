@@ -1,4 +1,5 @@
 import { createFileRoute, redirect, Outlet } from '@tanstack/react-router'
+import { getCurrentLang } from "@/shared/atoms";
 
 const SUPPORTED_LANGUAGES = ['fr', 'en']
 
@@ -14,7 +15,7 @@ export const Route = createFileRoute('/$lang')({
     if (!isSupportedLang || window.location.pathname === '/fr' || window.location.pathname === '/en') {
       throw redirect({
         to: '/$lang/sign-in',
-        params: { lang: isSupportedLang ? lang : 'fr' },
+        params: { lang: isSupportedLang ? lang : getCurrentLang() },
       })
     }
     return { lang }

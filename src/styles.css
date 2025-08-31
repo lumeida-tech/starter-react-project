@@ -56,6 +56,12 @@ body {
   --sidebar-ring: oklch(0.871 0.006 286.286);
 }
 
+  /**
+   * Dark theme colors
+   *
+   * These colors are used when the "dark" class is applied to the root element.
+   * They are used to style most of the UI components.
+   */
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);

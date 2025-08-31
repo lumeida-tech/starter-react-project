@@ -43,9 +43,9 @@ const requestHooks: Object = {
       const { response } = error;
       if (response) {
         try {
-          if (response.status === 401 && !window.location.href.endsWith('sign-in')) {
-            window.location.href = '/sign-in';
-          }
+          // if (response.status === 401 && !window.location.href.endsWith('sign-in')) {
+          //   window.location.href = '/sign-in';
+          // }
           const errorData = await response.json() as { message?: string, detail?: string };
           const customError = new Error(errorData.message || errorData.detail || 'Une erreur est survenue') as CustomHttpError;
           customError.status = response.status;

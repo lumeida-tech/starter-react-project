@@ -3,6 +3,7 @@ import { useNavigate, useSearch } from '@tanstack/react-router';
 import { useState } from 'react';
 import { WifiOff, Clock, AlertTriangle, RotateCcw } from 'lucide-react';
 import { NetworkStatusIndicator } from '@/shared/components/NetworkStatusIndicator';
+import { getCurrentLang } from '@/shared/atoms';
 
 interface NetworkErrorSearch {
   errorType?: 'network' | 'timeout' | 'server';
@@ -77,7 +78,7 @@ function NetworkErrorPage() {
   };
 
   const handleGoHome = () => {
-    navigate({ to: '/$lang', params: { lang: 'fr' } });
+    navigate({ to: '/$lang', params: { lang: getCurrentLang() } });
   };
 
   return (

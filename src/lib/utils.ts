@@ -2,6 +2,7 @@ import { clsx, type ClassValue } from 'clsx'
 import { toast } from 'sonner'
 import { twMerge } from 'tailwind-merge'
 import { redirect, useNavigate } from '@tanstack/react-router'
+import { getCurrentLang } from '@/shared/atoms'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -78,7 +79,7 @@ export const openWindow = (url: string) => {
       //return navigate({to: `/checkout/${window.location.pathname.split('/')[3]}/facturation`});
     }
 
-    navigate({to: `/$lang/customer/dashboard`, params: { lang: 'fr' }});
+    navigate({to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() }});
   };
 
   // Listen for message from popup
@@ -171,7 +172,7 @@ export async function getCroppedImg(
 
 export async function authMiddleware(gard: 'auth' | 'panel') {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
+  const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
   const response = await fetch('/api/auth/info', {
     credentials: 'include',
     signal: controller.signal,
@@ -194,7 +195,7 @@ export async function authMiddleware(gard: 'auth' | 'panel') {
       if (response?.status === 200) {
         throw redirect({
           to: '/$lang/customer/dashboard',
-          params: { lang: 'fr' }, // Langue par défaut
+          params: { lang: getCurrentLang() }, // Langue par défaut
         })
       }
       break;
@@ -202,7 +203,7 @@ export async function authMiddleware(gard: 'auth' | 'panel') {
       if (response?.status === 401) {
         throw redirect({
           to: '/$lang/sign-in',
-          params: { lang: 'fr' }, // Langue par défaut
+          params: { lang: getCurrentLang() }, // Langue par défaut
         })
       }
       break;
