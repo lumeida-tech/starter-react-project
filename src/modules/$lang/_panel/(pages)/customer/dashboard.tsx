@@ -140,7 +140,7 @@ function StatsCard() {
     {
       title: <Trans>Crédit wallet actuel</Trans>,
       count: `${user?.walletAmount?.toFixed(2)} €`,
-      action: <Trans>Créditer</Trans>,
+      action: 'Créditer',
       icon: CreditCardIcon,
       bgClass: "bg-gradient-to-r from-[#2b73f4] to-[#672cf5]",
       textColor: "text-white",
@@ -172,12 +172,12 @@ function StatsCard() {
 
             <div onClick={
               () => navigate(
-                {to: `${card.action === "Créditer" ? `/$lang/customer/profile/wallet` : `/$lang/customer/servers`}`, params: { lang: getCurrentLang() } },
+                {to: `${card.action === 'Créditer' ? `/$lang/customer/profile/wallet` : `/$lang/customer/servers`}`, params: { lang: getCurrentLang() } },
               )
             }  className="flex items-center gap-2 cursor-pointer group">
               <card.icon className={`w-4 h-4 ${card.iconColor} group-hover:scale-110 transition-transform`} />
               <span className={`font-semibold ${card.actionColor} text-xs sm:text-sm group-hover:underline`}>
-                {card.action}
+                {card.action === 'Créditer' ? <Trans>Créditer</Trans> : card.action}
               </span>
             </div>
           </CardContent>
