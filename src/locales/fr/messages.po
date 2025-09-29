@@ -13,34 +13,173 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:175
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:281
+msgid "Base de données"
+msgstr "Base de données"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:50
+msgid "Bienvenue chez Wayhost, "
+msgstr "Bienvenue chez Wayhost, "
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:196
+msgid "Chercher un domaine"
+msgstr "Chercher un domaine"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:194
+msgid "Choisissez votre domaine"
+msgstr "Choisissez votre domaine"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:277
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:284
+msgid "Commencer"
+msgstr "Commencer"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:87
+msgid "Commencer en 3 étapes simples"
+msgstr "Commencer en 3 étapes simples"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:63
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:110
+msgid "Commencer maintenant"
+msgstr "Commencer maintenant"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:210
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:270
+msgid "Configurer"
+msgstr "Configurer"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:208
+msgid "Configurez vos services"
+msgstr "Configurez vos services"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:176
 msgid "Connexion en cours..."
 msgstr "Connexion en cours..."
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:109
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:110
 msgid "Content de vous revoir !"
 msgstr "Content de vous revoir !"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:246
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:141
+msgid "Crédit wallet actuel"
+msgstr "Crédit wallet actuel"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:143
+msgid "Créditer"
+msgstr "Créditer"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:247
 msgid "Créer un compte"
 msgstr "Créer un compte"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:164
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:267
+msgid "Créer un VPS"
+msgstr "Créer un VPS"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:132
+msgid "Créer votre premier"
+msgstr "Créer votre premier"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:59
+msgid "Créez votre présence en ligne en quelques clics"
+msgstr "Créez votre présence en ligne en quelques clics"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:268
+msgid "Déployer un serveur virtuel"
+msgstr "Déployer un serveur virtuel"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:209
+msgid "DNS, SSL et sécurité inclus"
+msgstr "DNS, SSL et sécurité inclus"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:119
+msgid "Domaines"
+msgstr "Domaines"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:261
+msgid "Enregistré un nom de domaine"
+msgstr "Enregistré un nom de domaine"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:193
+msgid "Étape 1"
+msgstr "Étape 1"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:200
+msgid "Étape 2"
+msgstr "Étape 2"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:207
+msgid "Étape 3"
+msgstr "Étape 3"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:274
+msgid "Hébergement Web"
+msgstr "Hébergement Web"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:275
+msgid "Héberger votre site web"
+msgstr "Héberger votre site web"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:165
 msgid "Mot de passe oublié ?"
 msgstr "Mot de passe oublié ?"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:187
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:95
+msgid "Nos solutions populaires"
+msgstr "Nos solutions populaires"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:260
+msgid "Nouveau domaine"
+msgstr "Nouveau domaine"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:188
 msgid "ou se connecter avec"
 msgstr "ou se connecter avec"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:240
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:241
 msgid "Pas encore de compte ?"
 msgstr "Pas encore de compte ?"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:104
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:263
+msgid "Rechercher"
+msgstr "Rechercher"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:121
+msgid "Rechercher le votre"
+msgstr "Rechercher le votre"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:105
 msgid "Retour"
 msgstr "Retour"
 
-#: src/modules/$lang/_auth/(pages)/sign-in.tsx:176
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:282
+msgid "Sauvegarder vos données"
+msgstr "Sauvegarder vos données"
+
+#: src/modules/$lang/_auth/(pages)/sign-in.tsx:177
 msgid "Se connecter"
 msgstr "Se connecter"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:201
+msgid "Sélectionnez votre hébergement"
+msgstr "Sélectionnez votre hébergement"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:130
+msgid "Serveur VPS"
+msgstr "Serveur VPS"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:108
+msgid "Services actifs"
+msgstr "Services actifs"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:195
+msgid "Trouvez le nom parfait pour votre projet"
+msgstr "Trouvez le nom parfait pour votre projet"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:203
+msgid "Voir les options"
+msgstr "Voir les options"
+
+#: src/modules/$lang/_panel/(pages)/customer/dashboard.tsx:202
+msgid "Web, VPS ou solution sur mesure"
+msgstr "Web, VPS ou solution sur mesure"

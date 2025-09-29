@@ -24,6 +24,7 @@ import { Route as LangAuthpagesActivateAccountTokenRouteImport } from './modules
 import { Route as LangPanelpagesCustomerServersIndexRouteImport } from './modules/$lang/_panel/(pages)/customer/servers/index'
 import { Route as LangPanelpagesCustomerProfileIndexRouteImport } from './modules/$lang/_panel/(pages)/customer/profile/index'
 import { Route as LangPanelpagesAdminOsIndexRouteImport } from './modules/$lang/_panel/(pages)/admin/os/index'
+import { Route as LangPanelpagesCustomerProfileWalletRouteImport } from './modules/$lang/_panel/(pages)/customer/profile/wallet'
 import { Route as LangPanelpagesCustomerProfileReceiptsRouteImport } from './modules/$lang/_panel/(pages)/customer/profile/receipts'
 import { Route as LangPanelpagesCustomerProfileBillingsRouteImport } from './modules/$lang/_panel/(pages)/customer/profile/billings'
 import { Route as LangPanelpagesAdminOsCreateRouteImport } from './modules/$lang/_panel/(pages)/admin/os/create'
@@ -110,6 +111,12 @@ const LangPanelpagesAdminOsIndexRoute =
     path: '/admin/os/',
     getParentRoute: () => LangPanelRouteRoute,
   } as any)
+const LangPanelpagesCustomerProfileWalletRoute =
+  LangPanelpagesCustomerProfileWalletRouteImport.update({
+    id: '/(pages)/customer/profile/wallet',
+    path: '/customer/profile/wallet',
+    getParentRoute: () => LangPanelRouteRoute,
+  } as any)
 const LangPanelpagesCustomerProfileReceiptsRoute =
   LangPanelpagesCustomerProfileReceiptsRouteImport.update({
     id: '/(pages)/customer/profile/receipts',
@@ -155,6 +162,7 @@ export interface FileRoutesByFullPath {
   '/$lang/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
   '/$lang/customer/profile/receipts': typeof LangPanelpagesCustomerProfileReceiptsRoute
+  '/$lang/customer/profile/wallet': typeof LangPanelpagesCustomerProfileWalletRoute
   '/$lang/admin/os': typeof LangPanelpagesAdminOsIndexRoute
   '/$lang/customer/profile': typeof LangPanelpagesCustomerProfileIndexRoute
   '/$lang/customer/servers': typeof LangPanelpagesCustomerServersIndexRoute
@@ -175,6 +183,7 @@ export interface FileRoutesByTo {
   '/$lang/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
   '/$lang/customer/profile/receipts': typeof LangPanelpagesCustomerProfileReceiptsRoute
+  '/$lang/customer/profile/wallet': typeof LangPanelpagesCustomerProfileWalletRoute
   '/$lang/admin/os': typeof LangPanelpagesAdminOsIndexRoute
   '/$lang/customer/profile': typeof LangPanelpagesCustomerProfileIndexRoute
   '/$lang/customer/servers': typeof LangPanelpagesCustomerServersIndexRoute
@@ -198,6 +207,7 @@ export interface FileRoutesById {
   '/$lang/_panel/(pages)/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/_panel/(pages)/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
   '/$lang/_panel/(pages)/customer/profile/receipts': typeof LangPanelpagesCustomerProfileReceiptsRoute
+  '/$lang/_panel/(pages)/customer/profile/wallet': typeof LangPanelpagesCustomerProfileWalletRoute
   '/$lang/_panel/(pages)/admin/os/': typeof LangPanelpagesAdminOsIndexRoute
   '/$lang/_panel/(pages)/customer/profile/': typeof LangPanelpagesCustomerProfileIndexRoute
   '/$lang/_panel/(pages)/customer/servers/': typeof LangPanelpagesCustomerServersIndexRoute
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
     | '/$lang/admin/os/create'
     | '/$lang/customer/profile/billings'
     | '/$lang/customer/profile/receipts'
+    | '/$lang/customer/profile/wallet'
     | '/$lang/admin/os'
     | '/$lang/customer/profile'
     | '/$lang/customer/servers'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/$lang/admin/os/create'
     | '/$lang/customer/profile/billings'
     | '/$lang/customer/profile/receipts'
+    | '/$lang/customer/profile/wallet'
     | '/$lang/admin/os'
     | '/$lang/customer/profile'
     | '/$lang/customer/servers'
@@ -262,6 +274,7 @@ export interface FileRouteTypes {
     | '/$lang/_panel/(pages)/admin/os/create'
     | '/$lang/_panel/(pages)/customer/profile/billings'
     | '/$lang/_panel/(pages)/customer/profile/receipts'
+    | '/$lang/_panel/(pages)/customer/profile/wallet'
     | '/$lang/_panel/(pages)/admin/os/'
     | '/$lang/_panel/(pages)/customer/profile/'
     | '/$lang/_panel/(pages)/customer/servers/'
@@ -382,6 +395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPanelpagesAdminOsIndexRouteImport
       parentRoute: typeof LangPanelRouteRoute
     }
+    '/$lang/_panel/(pages)/customer/profile/wallet': {
+      id: '/$lang/_panel/(pages)/customer/profile/wallet'
+      path: '/customer/profile/wallet'
+      fullPath: '/$lang/customer/profile/wallet'
+      preLoaderRoute: typeof LangPanelpagesCustomerProfileWalletRouteImport
+      parentRoute: typeof LangPanelRouteRoute
+    }
     '/$lang/_panel/(pages)/customer/profile/receipts': {
       id: '/$lang/_panel/(pages)/customer/profile/receipts'
       path: '/customer/profile/receipts'
@@ -448,6 +468,7 @@ interface LangPanelRouteRouteChildren {
   LangPanelpagesAdminOsCreateRoute: typeof LangPanelpagesAdminOsCreateRoute
   LangPanelpagesCustomerProfileBillingsRoute: typeof LangPanelpagesCustomerProfileBillingsRoute
   LangPanelpagesCustomerProfileReceiptsRoute: typeof LangPanelpagesCustomerProfileReceiptsRoute
+  LangPanelpagesCustomerProfileWalletRoute: typeof LangPanelpagesCustomerProfileWalletRoute
   LangPanelpagesAdminOsIndexRoute: typeof LangPanelpagesAdminOsIndexRoute
   LangPanelpagesCustomerProfileIndexRoute: typeof LangPanelpagesCustomerProfileIndexRoute
   LangPanelpagesCustomerServersIndexRoute: typeof LangPanelpagesCustomerServersIndexRoute
@@ -462,6 +483,8 @@ const LangPanelRouteRouteChildren: LangPanelRouteRouteChildren = {
     LangPanelpagesCustomerProfileBillingsRoute,
   LangPanelpagesCustomerProfileReceiptsRoute:
     LangPanelpagesCustomerProfileReceiptsRoute,
+  LangPanelpagesCustomerProfileWalletRoute:
+    LangPanelpagesCustomerProfileWalletRoute,
   LangPanelpagesAdminOsIndexRoute: LangPanelpagesAdminOsIndexRoute,
   LangPanelpagesCustomerProfileIndexRoute:
     LangPanelpagesCustomerProfileIndexRoute,

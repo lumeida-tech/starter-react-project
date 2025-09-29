@@ -7,19 +7,19 @@ import {
   inActiveAlertOpenAtom,
   show2FAAtom,
   twoFactorAuthAtom,
-} from "../stores/auth-atoms";
-import {  otpSchema } from "../schemas";
+} from "../../stores/auth-atoms";
+import {  otpSchema } from "../../schemas";
 import {
   useAxmarilLoginMutation,
   useGoogleLoginMutation,
   useLoginMutation,
   useResendActivationEmailMutation,
-} from "./index";
+} from "../index";
 import {
   useSendOTPCodeMutation,
   useTwoFactorAuthMutation,
   useWhatsAppAuthMutation,
-} from "./index";
+} from "../index";
 
 export default function useSignInFormLogic() {
   // État local

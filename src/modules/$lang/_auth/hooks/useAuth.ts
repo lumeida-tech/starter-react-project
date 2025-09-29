@@ -33,7 +33,7 @@ import {
 import type { CustomHttpError } from "@/lib/http-client";
 import { useNavigate } from "@tanstack/react-router";
 import { openWindow } from "@/lib/utils";
-import { getCurrentLang, langAtom } from "@/shared/atoms";
+import { getCurrentLang } from "@/shared/atoms";
 
 /**
  * Hook pour l'inscription utilisateur

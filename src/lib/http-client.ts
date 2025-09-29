@@ -136,5 +136,53 @@ export async function handleHttpRequest<T = any>({
   }
 }
 
+export async function handleImageRequest<T = any>({
+  method,
+  endpoint,
+  payload = null,
+  queryParams = null,
+  targetApi = currentTargetApi,
+  timeout = 60000, // 60 secondes par défaut pour les images
+}: HttpRequestOptions & { timeout?: number }): Promise<T> {
+  initializeHttpClient();
+
+  if (targetApi !== currentTargetApi) {
+    updateClientBaseUrl(targetApi);
+  }
+
+  // Créer une instance spécialisée pour les images avec timeout personnalisé
+  const imageClient = httpClient.extend({
+    timeout: timeout,
+    retry: {
+      limit: 1, // Moins de retry pour les images pour éviter les longs délais
+      statusCodes: [408, 429, 500, 502, 503, 504],
+    },
+  });
+
+  const requestMethod = method.toLowerCase() as Lowercase<HttpMethod>;
+  const requestConfig = {
+    searchParams: queryParams ?? undefined,
+    ...(payload instanceof FormData
+      ? { body: payload }
+      : payload
+      ? { json: payload }
+      : {}),
+  };
+
+  try {
+    return (await imageClient[requestMethod](
+      endpoint,
+      requestConfig
+    ).blob()) as unknown as T;
+  } catch (error) {
+    console.error(
+      `Erreur lors de la requête d'image ${method} sur ${endpoint}:`,
+      error
+    );
+    throw error;
+  }
+}
+
+
 // Export du client HTTP pour utilisation directe
 export { httpClient }; 

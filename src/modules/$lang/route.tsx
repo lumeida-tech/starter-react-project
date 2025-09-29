@@ -1,6 +1,9 @@
 import { createFileRoute, redirect, Outlet } from '@tanstack/react-router'
 import { getCurrentLang } from "@/shared/atoms";
-
+import { useEffect } from 'react';
+import { i18n } from "@lingui/core";
+import { useAtomValue } from 'jotai';
+import { langAtom } from '@/shared/atoms';
 const SUPPORTED_LANGUAGES = ['fr', 'en']
 
 interface LangContext {
@@ -23,6 +26,10 @@ export const Route = createFileRoute('/$lang')({
 })
 
 function LangLayout() {
+  const currentLang = useAtomValue(langAtom);
+  useEffect(() => {
+    i18n.activate(currentLang);
+  }, [currentLang]);
   const { lang } = Route.useParams()
   return <div lang={lang}>
     <Outlet />
