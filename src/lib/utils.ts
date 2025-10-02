@@ -3,6 +3,8 @@ import { toast } from 'sonner'
 import { twMerge } from 'tailwind-merge'
 import { redirect, useNavigate } from '@tanstack/react-router'
 import { getCurrentLang } from '@/shared/atoms'
+import fetchAuthInfo from '@/utils'
+import { authCache } from '@/utils/caching'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -79,7 +81,7 @@ export const openWindow = (url: string) => {
       //return navigate({to: `/checkout/${window.location.pathname.split('/')[3]}/facturation`});
     }
 
-    navigate({to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() }});
+    navigate({ to: `/$lang/customer/dashboard`, params: { lang: getCurrentLang() } });
   };
 
   // Listen for message from popup
@@ -173,36 +175,39 @@ export async function getCroppedImg(
 export async function authMiddleware(gard: 'auth' | 'panel') {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-  const response = await fetch('/api/auth/info', {
-    credentials: 'include',
-    signal: controller.signal,
-  }).catch(() => {
-    console.log('Timeout or network error');
-    throw redirect({
-      to: '/network-error',
-      search: {
-        errorType: 'network',
-        canRetry: 'true',
-        returnTo: '/$lang/sign-in',
-      },
-    })
-  })
-
+  const response = await fetchAuthInfo(controller);
+  console.log('authMiddleware');
+  console.log(response);
   clearTimeout(timeoutId);
 
   switch (gard) {
     case 'auth':
-      if (response?.status === 200) {
-        throw redirect({
-          to: '/$lang/customer/dashboard',
-          params: { lang: getCurrentLang() }, // Langue par défaut
-        })
+      if (response?.status === 'success') {
+        if (response?.data?.roles?.admin === true) {
+          throw redirect({
+            to: '/$lang/admin/dashboard',
+            params: { lang: getCurrentLang() }, // Langue par défaut
+          })
+        }
+        else {
+          throw redirect({
+            to: '/$lang/customer/dashboard',
+            params: { lang: getCurrentLang() }, // Langue par défaut
+          })
+        }
       }
       break;
     case 'panel':
-      if (response?.status === 401) {
+      if (response?.status === 'failed') {
+        authCache.clear();
         throw redirect({
           to: '/$lang/sign-in',
+          params: { lang: getCurrentLang() }, // Langue par défaut
+        })
+      }
+      if (response?.data?.roles?.admin === false && window.location.pathname.split('/')[2] === 'admin' ) {
+        throw redirect({
+          to: '/$lang/customer/dashboard',
           params: { lang: getCurrentLang() }, // Langue par défaut
         })
       }

@@ -2,11 +2,11 @@ import * as z from "zod";
 import { signInSchema, forgotPasswordSchema, resetPasswordSchema, signUpSchema, updatePasswordSchema } from "./auth-validations";
 
 // Types exportés basés sur les schémas de validation
-export type SignInSchema = z.infer<typeof signInSchema>;
-export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
-export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
-export type SignUpSchema = z.infer<typeof signUpSchema>;
-export type UpdatePasswordSchema = z.infer<typeof updatePasswordSchema>;
+export type SignInType = z.infer<typeof signInSchema>;
+export type ForgotPasswordType = z.infer<typeof forgotPasswordSchema>;
+export type ResetPasswordType = z.infer<typeof resetPasswordSchema>;
+export type SignUpType = z.infer<typeof signUpSchema>;
+export type UpdatePasswordType = z.infer<typeof updatePasswordSchema>;
 
 // Types de réponses API
 export interface UserData {

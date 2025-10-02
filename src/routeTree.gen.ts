@@ -20,6 +20,7 @@ import { Route as LangAuthpagesResetPasswordRouteImport } from './modules/$lang/
 import { Route as LangAuthpagesOauthRouteImport } from './modules/$lang/_auth/(pages)/oauth'
 import { Route as LangAuthpagesForgetPasswordRouteImport } from './modules/$lang/_auth/(pages)/forget-password'
 import { Route as LangPanelpagesCustomerDashboardRouteImport } from './modules/$lang/_panel/(pages)/customer/dashboard'
+import { Route as LangPanelpagesAdminDashboardRouteImport } from './modules/$lang/_panel/(pages)/admin/dashboard'
 import { Route as LangAuthpagesActivateAccountTokenRouteImport } from './modules/$lang/_auth/(pages)/activate-account.$token'
 import { Route as LangPanelpagesCustomerServersIndexRouteImport } from './modules/$lang/_panel/(pages)/customer/servers/index'
 import { Route as LangPanelpagesCustomerProfileIndexRouteImport } from './modules/$lang/_panel/(pages)/customer/profile/index'
@@ -85,6 +86,12 @@ const LangPanelpagesCustomerDashboardRoute =
   LangPanelpagesCustomerDashboardRouteImport.update({
     id: '/(pages)/customer/dashboard',
     path: '/customer/dashboard',
+    getParentRoute: () => LangPanelRouteRoute,
+  } as any)
+const LangPanelpagesAdminDashboardRoute =
+  LangPanelpagesAdminDashboardRouteImport.update({
+    id: '/(pages)/admin/dashboard',
+    path: '/admin/dashboard',
     getParentRoute: () => LangPanelRouteRoute,
   } as any)
 const LangAuthpagesActivateAccountTokenRoute =
@@ -158,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/$lang/sign-in': typeof LangAuthpagesSignInRoute
   '/$lang/sign-up': typeof LangAuthpagesSignUpRoute
   '/$lang/activate-account/$token': typeof LangAuthpagesActivateAccountTokenRoute
+  '/$lang/admin/dashboard': typeof LangPanelpagesAdminDashboardRoute
   '/$lang/customer/dashboard': typeof LangPanelpagesCustomerDashboardRoute
   '/$lang/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
@@ -179,6 +187,7 @@ export interface FileRoutesByTo {
   '/$lang/sign-in': typeof LangAuthpagesSignInRoute
   '/$lang/sign-up': typeof LangAuthpagesSignUpRoute
   '/$lang/activate-account/$token': typeof LangAuthpagesActivateAccountTokenRoute
+  '/$lang/admin/dashboard': typeof LangPanelpagesAdminDashboardRoute
   '/$lang/customer/dashboard': typeof LangPanelpagesCustomerDashboardRoute
   '/$lang/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
@@ -203,6 +212,7 @@ export interface FileRoutesById {
   '/$lang/_auth/(pages)/sign-in': typeof LangAuthpagesSignInRoute
   '/$lang/_auth/(pages)/sign-up': typeof LangAuthpagesSignUpRoute
   '/$lang/_auth/(pages)/activate-account/$token': typeof LangAuthpagesActivateAccountTokenRoute
+  '/$lang/_panel/(pages)/admin/dashboard': typeof LangPanelpagesAdminDashboardRoute
   '/$lang/_panel/(pages)/customer/dashboard': typeof LangPanelpagesCustomerDashboardRoute
   '/$lang/_panel/(pages)/admin/os/create': typeof LangPanelpagesAdminOsCreateRoute
   '/$lang/_panel/(pages)/customer/profile/billings': typeof LangPanelpagesCustomerProfileBillingsRoute
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/$lang/sign-in'
     | '/$lang/sign-up'
     | '/$lang/activate-account/$token'
+    | '/$lang/admin/dashboard'
     | '/$lang/customer/dashboard'
     | '/$lang/admin/os/create'
     | '/$lang/customer/profile/billings'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/$lang/sign-in'
     | '/$lang/sign-up'
     | '/$lang/activate-account/$token'
+    | '/$lang/admin/dashboard'
     | '/$lang/customer/dashboard'
     | '/$lang/admin/os/create'
     | '/$lang/customer/profile/billings'
@@ -270,6 +282,7 @@ export interface FileRouteTypes {
     | '/$lang/_auth/(pages)/sign-in'
     | '/$lang/_auth/(pages)/sign-up'
     | '/$lang/_auth/(pages)/activate-account/$token'
+    | '/$lang/_panel/(pages)/admin/dashboard'
     | '/$lang/_panel/(pages)/customer/dashboard'
     | '/$lang/_panel/(pages)/admin/os/create'
     | '/$lang/_panel/(pages)/customer/profile/billings'
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       path: '/customer/dashboard'
       fullPath: '/$lang/customer/dashboard'
       preLoaderRoute: typeof LangPanelpagesCustomerDashboardRouteImport
+      parentRoute: typeof LangPanelRouteRoute
+    }
+    '/$lang/_panel/(pages)/admin/dashboard': {
+      id: '/$lang/_panel/(pages)/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/$lang/admin/dashboard'
+      preLoaderRoute: typeof LangPanelpagesAdminDashboardRouteImport
       parentRoute: typeof LangPanelRouteRoute
     }
     '/$lang/_auth/(pages)/activate-account/$token': {
@@ -464,6 +484,7 @@ const LangAuthRouteRouteWithChildren = LangAuthRouteRoute._addFileChildren(
 )
 
 interface LangPanelRouteRouteChildren {
+  LangPanelpagesAdminDashboardRoute: typeof LangPanelpagesAdminDashboardRoute
   LangPanelpagesCustomerDashboardRoute: typeof LangPanelpagesCustomerDashboardRoute
   LangPanelpagesAdminOsCreateRoute: typeof LangPanelpagesAdminOsCreateRoute
   LangPanelpagesCustomerProfileBillingsRoute: typeof LangPanelpagesCustomerProfileBillingsRoute
@@ -477,6 +498,7 @@ interface LangPanelRouteRouteChildren {
 }
 
 const LangPanelRouteRouteChildren: LangPanelRouteRouteChildren = {
+  LangPanelpagesAdminDashboardRoute: LangPanelpagesAdminDashboardRoute,
   LangPanelpagesCustomerDashboardRoute: LangPanelpagesCustomerDashboardRoute,
   LangPanelpagesAdminOsCreateRoute: LangPanelpagesAdminOsCreateRoute,
   LangPanelpagesCustomerProfileBillingsRoute:

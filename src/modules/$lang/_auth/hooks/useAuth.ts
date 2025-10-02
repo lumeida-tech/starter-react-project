@@ -34,6 +34,7 @@ import type { CustomHttpError } from "@/lib/http-client";
 import { useNavigate } from "@tanstack/react-router";
 import { openWindow } from "@/lib/utils";
 import { getCurrentLang } from "@/shared/atoms";
+import { authCache } from "@/utils/caching";
 
 /**
  * Hook pour l'inscription utilisateur
@@ -267,6 +268,7 @@ export function useLogoutMutation() {
       return await logoutRequest();
     },
     onSuccess: () => {
+      authCache.clear();
       toast.success("Déconnexion réussie");
       navigate({to: `/$lang/sign-in`, params: { lang: getCurrentLang() }});
     },
